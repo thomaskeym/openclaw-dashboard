@@ -1,0 +1,371 @@
+/**
+ * 右侧边栏布局样式
+ * 将健康度和快捷操作移至右侧固定边栏
+ */
+
+/* 主容器布局已在 style.css 中定义，这里只定义右侧边栏相关样式 */
+
+/* 右侧边栏 */
+.right-sidebar {
+    width: 280px;
+    min-width: 280px;
+    max-width: 280px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    position: sticky;
+    top: 20px;
+    max-height: calc(100vh - 40px);
+    overflow-y: auto;
+    background: transparent;
+    align-self: flex-start;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+/* 侧栏内各面板不参与收缩，按内容高度显示，超出时侧栏整体滚动 */
+.right-sidebar > .health-panel-compact,
+.right-sidebar > .channels-panel-compact,
+.right-sidebar > .quick-actions-compact {
+    flex-shrink: 0;
+}
+
+.right-sidebar::-webkit-scrollbar {
+    width: 6px;
+}
+
+.right-sidebar::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.right-sidebar::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 3px;
+}
+
+.right-sidebar::-webkit-scrollbar-thumb:hover {
+    background: var(--text-muted);
+}
+
+/* 健康度面板 - 紧凑版 */
+.health-panel-compact {
+    background: var(--bg-card);
+    border-radius: 12px;
+    padding: 16px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 2px 8px var(--shadow);
+    position: relative;
+    overflow: visible;
+}
+
+.health-panel-compact::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--success), var(--info), var(--warning));
+    background-size: 200% 100%;
+    animation: healthBar 3s ease-in-out infinite;
+}
+
+@keyframes healthBar {
+    0%, 100% { background-position: 0% 0%; }
+    50% { background-position: 100% 0%; }
+}
+
+.health-panel-compact .health-score {
+    text-align: center;
+    margin-bottom: 12px;
+}
+
+.health-panel-compact .score-value {
+    font-size: 2.5em;
+    font-weight: bold;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 4px;
+}
+
+.health-panel-compact .score-label {
+    font-size: 0.85em;
+    color: var(--text-secondary);
+}
+
+.health-panel-compact .health-status {
+    text-align: center;
+    margin-bottom: 12px;
+}
+
+.health-panel-compact .health-issues {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    max-height: 320px;
+    overflow-y: auto;
+    min-height: 0;
+}
+
+.health-panel-compact .issue-item {
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-size: 0.8em;
+    background: rgba(239, 68, 68, 0.1);
+    color: var(--error);
+    border-left: 3px solid var(--error);
+}
+
+/* 快捷操作面板 - 紧凑版 */
+.quick-actions-compact {
+    background: var(--bg-card);
+    border-radius: 12px;
+    padding: 16px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 2px 8px var(--shadow);
+}
+
+.quick-actions-compact .card-header {
+    margin-bottom: 12px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.quick-actions-compact .card-title {
+    font-size: 1em;
+    font-weight: 600;
+}
+
+.quick-actions-compact .quick-actions-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.quick-actions-compact .action-btn {
+    padding: 12px 8px;
+    background: var(--bg-secondary);
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+.quick-actions-compact .action-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px var(--shadow);
+    border-color: var(--accent);
+    background: rgba(59, 130, 246, 0.05);
+}
+
+.quick-actions-compact .action-icon {
+    font-size: 1.5em;
+}
+
+.quick-actions-compact .action-label {
+    font-size: 0.75em;
+    color: var(--text-primary);
+    font-weight: 500;
+    line-height: 1.2;
+}
+
+/* 通道状态面板（紧凑版） */
+.channels-panel-compact {
+    background: var(--bg-card);
+    border-radius: 12px;
+    padding: 16px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 2px 8px var(--shadow);
+}
+
+.channels-panel-compact .card-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border-color);
+    flex-wrap: wrap;
+}
+
+.channels-panel-compact .card-header .card-title {
+    font-size: 1em;
+    font-weight: 600;
+    flex: 1;
+}
+
+.channels-panel-compact .card-header .btn-small {
+    font-size: 0.8em;
+    padding: 4px 8px;
+}
+
+.channels-panel-compact .card-content {
+    padding: 0;
+}
+
+.channels-panel-compact .channel-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.channels-panel-compact .channel-item {
+    padding: 10px 12px;
+    font-size: 0.85em;
+}
+
+.channels-panel-compact .channel-name {
+    font-weight: 500;
+}
+
+.channels-panel-compact .channel-status {
+    font-size: 0.8em;
+    margin-top: 4px;
+}
+
+/* 响应式处理 */
+@media (max-width: 1024px) {
+    .main-layout {
+        flex-direction: column;
+    }
+    
+    .right-sidebar {
+        width: 100%;
+        position: static;
+        max-height: none;
+        flex-direction: row;
+        gap: 15px;
+        min-width: auto;
+    }
+    
+    .health-panel-compact,
+    .channels-panel-compact,
+    .quick-actions-compact {
+        flex: 1;
+    }
+}
+
+/* 确保桌面端右侧边栏始终显示 */
+@media (min-width: 1025px) {
+    .main-layout {
+        display: flex !important;
+        flex-direction: row !important;
+    }
+    
+    .right-sidebar {
+        display: flex !important;
+        width: 280px !important;
+        min-width: 280px !important;
+        max-width: 280px !important;
+        order: 2;
+        visibility: visible !important;
+        opacity: 1 !important;
+        position: sticky !important;
+    }
+    
+    .main-content-area {
+        order: 1;
+        flex: 1;
+        width: calc(100% - 300px) !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .right-sidebar {
+        flex-direction: column;
+    }
+    
+    .health-panel-compact .score-value {
+        font-size: 2em;
+    }
+    
+    .quick-actions-compact .quick-actions-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+    }
+    
+    .quick-actions-compact .action-btn {
+        padding: 10px 6px;
+    }
+}
+
+/* 移动端：可折叠的右侧边栏 */
+.right-sidebar-toggle {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: white;
+    border: none;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    z-index: 1000;
+    font-size: 1.5em;
+    transition: all 0.3s;
+    align-items: center;
+    justify-content: center;
+}
+
+.right-sidebar-toggle:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+}
+
+/* 桌面端：collapsed状态不影响显示 */
+@media (min-width: 641px) {
+    .right-sidebar.collapsed {
+        display: flex !important;
+    }
+}
+
+@media (max-width: 640px) {
+    .right-sidebar-toggle {
+        display: flex;
+    }
+    
+    .right-sidebar {
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 280px;
+        height: 100vh;
+        background: var(--bg-card);
+        box-shadow: -4px 0 16px rgba(0, 0, 0, 0.2);
+        z-index: 999;
+        padding: 20px;
+        overflow-y: auto;
+        transform: translateX(0);
+        transition: transform 0.3s ease;
+    }
+    
+    .right-sidebar.collapsed {
+        transform: translateX(100%);
+    }
+    
+    /* 移动端遮罩 */
+    .right-sidebar-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 998;
+    }
+    
+    .right-sidebar-overlay.show {
+        display: block;
+    }
+}

@@ -1,0 +1,138 @@
+/**
+ * 布局优化补充样式
+ * 提供额外的布局改进和工具类
+ */
+
+/* 卡片分组样式 */
+.card-group {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.card-group-title {
+    grid-column: 1 / -1;
+    font-size: 1.3em;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--border-color);
+}
+
+/* 紧凑列表样式 */
+.compact-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.compact-list-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 12px;
+    background: var(--bg-secondary);
+    border-radius: 6px;
+    border-left: 3px solid var(--accent);
+    transition: all 0.2s;
+}
+
+.compact-list-item:hover {
+    background: rgba(59, 130, 246, 0.05);
+    transform: translateX(4px);
+}
+
+/* 统计卡片样式 - 主定义在 style.css，此处仅作补充 */
+
+/* 工具栏优化 */
+.toolbar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.toolbar-btn {
+    padding: 6px 10px;
+    background: rgba(59, 130, 246, 0.1);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.85em;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.toolbar-btn:hover {
+    background: rgba(59, 130, 246, 0.2);
+    transform: translateY(-1px);
+}
+
+/* 空状态优化 */
+.empty-state {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--text-muted);
+    font-size: 0.9em;
+}
+
+.empty-state-icon {
+    font-size: 3em;
+    margin-bottom: 10px;
+    opacity: 0.5;
+}
+
+/* 加载状态优化 */
+.loading {
+    text-align: center;
+    padding: 30px;
+    color: var(--text-muted);
+    font-size: 0.9em;
+}
+
+.loading::after {
+    content: '...';
+    animation: dots 1.5s steps(4, end) infinite;
+}
+
+@keyframes dots {
+    0%, 20% { content: '.'; }
+    40% { content: '..'; }
+    60%, 100% { content: '...'; }
+}
+
+/* 响应式工具类 */
+.hide-mobile {
+    display: block;
+}
+
+.show-mobile {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .hide-mobile {
+        display: none;
+    }
+    
+    .show-mobile {
+        display: block;
+    }
+}
+
+/* 间距工具类 */
+.mt-small { margin-top: 8px; }
+.mt-medium { margin-top: 16px; }
+.mt-large { margin-top: 24px; }
+
+.mb-small { margin-bottom: 8px; }
+.mb-medium { margin-bottom: 16px; }
+.mb-large { margin-bottom: 24px; }
+
+.p-small { padding: 8px; }
+.p-medium { padding: 16px; }
+.p-large { padding: 24px; }
