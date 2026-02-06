@@ -19,11 +19,10 @@
 
 ## 📸 预览
 
-若你有界面截图，可放在 `docs/screenshot.png`，并在下方取消注释显示：
 
 
 <p align="center">
-  <img src="docs/screenshot.png" alt="Dashboard Screenshot" width="800">
+  <img src="screenshot.png" alt="Dashboard Screenshot" width="800">
 </p>
 
 
