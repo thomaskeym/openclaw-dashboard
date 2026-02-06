@@ -19,7 +19,6 @@
 
 ## 📸 预览
 
-若你有界面截图，可放在 `docs/screenshot.png`，并在下方取消注释显示：
 
 
 <p align="center">
